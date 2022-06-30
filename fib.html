@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>菲波那切数列计算器</title>
+</head>
+
+<body>
+    <div class="mobile_main">
+        <script>
+            var i = 0;
+            var fibs = [];
+            function fib(a) {
+                var x, y, z;
+                switch (a) {
+                    case 0: case 1: x = a; break;
+                    default:
+                        if (!fibs[a - 1]) {
+                            fibs[a - 1] = fib(a - 1);
+                        }
+                        if (!fibs[a - 2]) {
+                            fibs[a - 2] = fib(a - 2);
+                        }
+
+                        y = fibs[a - 1];
+                        z = fibs[a - 2];
+                        x = y + z;
+                }
+                return x;
+            }
+            function doFib() {
+                var n = parseInt(document.getElementById("n").value);
+                if (isNaN(n) || n < 1 || n > 1000) {
+                    alert("输入超出范围或不合法");
+                    return;
+                }
+
+                var a;
+                var r = document.getElementById("r");
+                r.value = '';
+
+                r.value += "第" + n + "个菲波那契数为" + fib(n)
+            }</script>
+        <TABLE cellSpacing=0 cellPadding=2 width=525 border=0 align="center">
+            <TBODY>
+                <TR>
+                    <TD style="PADDING-BOTTOM: 30px; PADDING-TOP: 30px" vAlign=top align=middle>
+                        <P>输入数值: <INPUT id=n placeholder="请输入斐波那契数的序号"></P>
+                        <P>请输入0-1000之内的整数</P>
+                        <form method="POST" action="--WEBBOT-SELF--">
+                            <p><textarea id=r rows="5" name="S1" cols="50">
+                            </textarea></p>
+                        </form>
+                        <P><INPUT onclick=doFib(); type=button value=计算></P>
+                    </TD>
+                </TR>
+            </TBODY>
+        </TABLE>
+
+        <div style='height:10px;'></div>
+
+</body>
+
+</html>
